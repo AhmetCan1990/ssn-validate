@@ -5,9 +5,9 @@ formSubmit.addEventListener("submit", (event) => {
   event.preventDefault();
   validation(formInput.value.trim().split("-"));
 });
-function displayAlert(alertMessage) {
+function displayAlert(alertMessage, color) {
   const divAlert = document.createElement("div");
-  divAlert.setAttribute("class", "alert alert-danger");
+  divAlert.setAttribute("class", `alert alert-${color}`);
   divAlert.setAttribute("role", "alert");
   divAlert.innerText = alertMessage;
   container.append(divAlert);
@@ -25,9 +25,12 @@ function validation(ssnArr) {
     ssnArr[1] != "00" &&
     ssnArr[2] != "0000"
   ) {
-    displayAlert(`Entered SSN (${formInput.value}) is valid`);
+    displayAlert(`Entered SSN (${formInput.value}) is valid`, "success");
   } else {
-    displayAlert(`SSN must be 11 characters (9 numbers and 2 hypens)`);
+    displayAlert(
+      `SSN must be 11 characters (9 numbers and 2 hypens)`,
+      "danger"
+    );
   }
   setTimeout(function () {
     document.querySelector(".alert").remove();
